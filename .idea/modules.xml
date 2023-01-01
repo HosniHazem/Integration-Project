@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ApiGataway/ApiGataway.iml" filepath="$PROJECT_DIR$/ApiGataway/ApiGataway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Ecommerce Backend/Ecommerce Backend.iml" filepath="$PROJECT_DIR$/Ecommerce Backend/Ecommerce Backend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Project d'integration.iml" filepath="$PROJECT_DIR$/.idea/Project d'integration.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Reclamation/Reclamation.iml" filepath="$PROJECT_DIR$/Reclamation/Reclamation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ServiceRegistry/ServiceRegistry.iml" filepath="$PROJECT_DIR$/ServiceRegistry/ServiceRegistry.iml" />
+      <module fileurl="file://$PROJECT_DIR$/E-Commerce-master/com.success.ecommerce.iml" filepath="$PROJECT_DIR$/E-Commerce-master/com.success.ecommerce.iml" />
+    </modules>
+  </component>
+</project>

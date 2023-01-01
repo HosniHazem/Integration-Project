@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Ecommerce Backend:war">
+    <output-path>$PROJECT_DIR$/Ecommerce Backend/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>Ecommerce Backend</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="Unknown-2.1.6.RELEASE.war">
+      <element id="artifact" artifact-name="Ecommerce Backend:war exploded" />
+    </root>
+  </artifact>
+</component>

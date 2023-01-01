@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="com.youtube.ecommerce:war">
+    <output-path>$PROJECT_DIR$/E-Commerce-master/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>com.youtube.ecommerce</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="com.youtube.ecommerce-0.0.1.war">
+      <element id="artifact" artifact-name="com.youtube.ecommerce:war exploded" />
+    </root>
+  </artifact>
+</component>

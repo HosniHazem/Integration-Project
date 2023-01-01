@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="Ecommerce Backend" />
+        <module name="com.success.ecommerce" />
+        <module name="ServiceRegistry" />
+        <module name="ApiGataway" />
+        <module name="Reclamation" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ApiGataway" target="1.8" />
+      <module name="com.success.ecommerce" target="1.8" />
+      <module name="Ecommerce Backend" target="1.8" />
+      <module name="Reclamation" target="1.8" />
+      <module name="ServiceRegistry" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ApiGataway" options="-parameters" />
+      <module name="Reclamation" options="-parameters" />
+      <module name="ServiceRegistry" options="-parameters" />
+      <module name="com.success.ecommerce" options="-parameters" />
+    </option>
+  </component>
+</project>
