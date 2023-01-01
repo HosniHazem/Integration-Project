@@ -1,0 +1,30 @@
+server:
+  port: 8088
+spring:
+  application:
+    name: API-GATAWAY
+  cloud:
+    gateway:
+      routes:
+        - id: USER-ECOMMERCE
+          uri: lb://USER-ECOMMERCE
+          predicates:
+            - Path=/api/**
+
+        - id: USER-RECLAMATION
+          uri: lb://USER-RECLAMATION
+          predicates:
+            - Path=/apis/**
+
+        - id: UPLOAD-IMAGE
+          uri: lb://UPLOAD-IMAGE
+          predicates:
+            - Path=/**
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
