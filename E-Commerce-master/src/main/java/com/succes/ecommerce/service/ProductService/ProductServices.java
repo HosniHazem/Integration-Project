@@ -34,22 +34,16 @@ public class ProductServices {
 		return productRepo.getByCategoryId(product_id);
 	}
 
-	public List<Category>getAllCategory(){
-		return cateRepo.findAll();
-	}
+
 
 	public Optional<Products> findProduct(Long productId) {
 		return productRepo.findById(productId);
 	}
-	public Optional<Category> findCategory(Long categoryId) {
-		return cateRepo.findById(categoryId);
-	}
+
 	public Products getProductsById(long productId) throws Exception {
 		return productRepo.findById(productId).orElseThrow(() ->new Exception("Product is not found"));
 	}
-	public void createCategory(Category category) {
-		cateRepo.save(category);
-	}
+
 
 	public void createProduct(Products product, Category category) {
 
@@ -77,8 +71,5 @@ public class ProductServices {
 	public void deleteCartItem(Long productId) {
 		productRepo.deleteById(productId);
 	}
-	public void deleteCategoryItem(Long categoryId) {
 
-		cateRepo.deleteById(categoryId);
-	}
 }

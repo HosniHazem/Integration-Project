@@ -6,12 +6,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
-import com.succes.ecommerce.dto.ProductDto;
 import com.succes.ecommerce.Repository.CategoryRepo;
 import com.succes.ecommerce.controller.RequestPojo.ApiResponse;
+import com.succes.ecommerce.service.CategoryServices.CategoryServices;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,22 +19,28 @@ import com.succes.ecommerce.model.Category;
 import com.succes.ecommerce.model.Products;
 import com.succes.ecommerce.service.ProductService.ProductServices;
 
+import javax.annotation.security.RolesAllowed;
+
 @RestController
 @RequestMapping("/api")
 public class ProductController {
 	@Autowired
 	ProductServices ProductServices;
+	@Autowired
+	CategoryServices CategoryServices;
 
 	@Autowired
 	private CategoryRepo categoryRepo;
 
 	@RequestMapping("/product/getAll")
+
 	public List<Products> getAllPRoducts(){
 		return ProductServices.getAllProducts();
 	}
-	@RequestMapping("/product/getAllCategory")
+	@RequestMapping("/getAllCategory")
+
 	public List<Category> getAllCategory(){
-		return ProductServices.getAllCategory();
+		return CategoryServices.getAllCategory();
 	}
 	@RequestMapping("/product/getProductsByCategory/{categoryId}")
 	public List<Products> getProductsByCategory(@RequestBody HashMap<String,String> request){
@@ -49,11 +54,11 @@ public class ProductController {
 		return ProductServices.findProduct(productId);
 
 	}
-	@GetMapping("/product/category/{categoryId}")
+	@GetMapping("category/{categoryId}")
 	public Optional<Category> findCategory(@PathVariable Long categoryId) {
 
 
-		return ProductServices.findCategory(categoryId);
+		return CategoryServices.findCategory(categoryId);
 
 	}
 
@@ -63,9 +68,9 @@ public class ProductController {
 		InputStream in = getClass().getResourceAsStream("/images/"+img_name);
 		return IOUtils.toByteArray(in);
 	}
-	@PostMapping("/product/category")
+	@PostMapping("/category")
 	public ResponseEntity<ApiResponse> createCategory(@RequestBody Category category) {
-		ProductServices.createCategory(category);
+		CategoryServices.createCategory(category);
 		return ResponseEntity.ok(new ApiResponse("Category successfully", ""));
 	}
 	@PostMapping("/product/create")
@@ -86,18 +91,19 @@ public class ProductController {
 		ProductServices.updateProduct(product, productId);
 		return ResponseEntity.ok(new ApiResponse(" Product Updated successfully", ""));
 	}
-	@PutMapping("/product/updateCat/{categoryId}")
-	public Category updateCategory(@PathVariable("categoryId") Long categoryId, @RequestBody Category newcategory ) throws Exception {
+	@PutMapping("/updateCat/{categoryId}")
+	public ResponseEntity<ApiResponse> updateCategory(@PathVariable("categoryId") Long categoryId, @RequestBody Category newcategory ) throws Exception {
 
 		return categoryRepo.findById(categoryId)
 				.map(category -> {
 					category.setName(newcategory.getName());
-					return categoryRepo.save(category);
+					categoryRepo.save(category);
+					return ResponseEntity.ok(new ApiResponse(" Category Updated successfully", ""));
 				})
 				.orElseGet(() -> {
-					newcategory.setId(categoryId);
-					return categoryRepo.save(newcategory);
+					return ResponseEntity.badRequest().body(new ApiResponse("category does not exists", ""));
 				});
+
 
 	}
 	@DeleteMapping("/product/deleteProd/{productId}")
@@ -112,14 +118,14 @@ public class ProductController {
 		return ResponseEntity.ok(new ApiResponse(" Product Deleted successfully", ""));
 
 	}
-	@DeleteMapping("/product/deleteCat/{categoryId}")
+	@DeleteMapping("/deleteCat/{categoryId}")
 	public ResponseEntity<ApiResponse> deleteCategoryItem(@PathVariable("categoryId") Long categoryId ){
 
 
 
 
 
-		ProductServices.deleteCategoryItem(categoryId);
+		CategoryServices.deleteCategoryItem(categoryId);
 
 		return ResponseEntity.ok(new ApiResponse(" Category Deleted successfully", ""));
 
